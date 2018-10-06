@@ -101,12 +101,20 @@ def get_key_count_from_file(file_path, json_nesting="results/metadata",
 # main method:
 # This is an example of how to use above method
 if __name__ == '__main__':
+    import sys
 
-
+    argv_length = len(sys.argv)
     JSON_FILE_PATH = 'assets/json/sample.json'
     SEARCH_KEY = 'metadata-type'
     JSON_PATH = 'results/metadata'
     IS_SORTED = True
+
+    if argv_length > 1:
+        JSON_FILE_PATH = sys.argv[1]
+    if argv_length > 2:
+        SEARCH_KEY = sys.argv[2]
+    if argv_length > 3:
+        JSON_PATH = sys.argv[3]
 
     try:
         RESULT = get_key_count_from_file(JSON_FILE_PATH, JSON_PATH,
